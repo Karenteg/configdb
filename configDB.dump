@@ -1,0 +1,385 @@
+-- MySQL dump 10.13  Distrib 5.1.41, for debian-linux-gnu (i486)
+--
+-- Host: localhost    Database: configDB
+-- ------------------------------------------------------
+-- Server version	5.1.41-3ubuntu12.10
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `CSCG`
+--
+
+DROP TABLE IF EXISTS `CSCG`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CSCG` (
+  `idCSCG` int(11) NOT NULL AUTO_INCREMENT,
+  `CSCGname` varchar(64) NOT NULL,
+  PRIMARY KEY (`idCSCG`),
+  UNIQUE KEY `idCSCG_UNIQUE` (`idCSCG`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CSCG`
+--
+
+LOCK TABLES `CSCG` WRITE;
+/*!40000 ALTER TABLE `CSCG` DISABLE KEYS */;
+INSERT INTO `CSCG` VALUES (1,'CSW'),(2,'FWK'),(3,'CAS'),(4,'CMAS'),(5,'TGS'),(6,'Cabin GUI'),(7,'PAX GUI'),(8,'N/A'),(31,'CSCG');
+/*!40000 ALTER TABLE `CSCG` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `dirname`
+--
+
+DROP TABLE IF EXISTS `dirname`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `dirname` (
+  `idDirname` int(11) NOT NULL AUTO_INCREMENT,
+  `path` varchar(64) NOT NULL,
+  PRIMARY KEY (`idDirname`),
+  UNIQUE KEY `idDirname_UNIQUE` (`idDirname`),
+  UNIQUE KEY `path_UNIQUE` (`path`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `dirname`
+--
+
+LOCK TABLES `dirname` WRITE;
+/*!40000 ALTER TABLE `dirname` DISABLE KEYS */;
+INSERT INTO `dirname` VALUES (1,'apps/data'),(2,'apps/data/com-thalesifec-ux-cabingui'),(4,'apps/data/fsa_default_scripts'),(5,'core/coresw/data'),(6,'core/framework/data');
+/*!40000 ALTER TABLE `dirname` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `documentation`
+--
+
+DROP TABLE IF EXISTS `documentation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `documentation` (
+  `idDocumentation` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) NOT NULL,
+  `version` varchar(45) NOT NULL,
+  `link` varchar(64) DEFAULT NULL,
+  PRIMARY KEY (`idDocumentation`),
+  UNIQUE KEY `idDocumentation_UNIQUE` (`idDocumentation`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `documentation`
+--
+
+LOCK TABLES `documentation` WRITE;
+/*!40000 ALTER TABLE `documentation` DISABLE KEYS */;
+INSERT INTO `documentation` VALUES (1,'DBI_SUM','Rev-M',NULL);
+/*!40000 ALTER TABLE `documentation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `field`
+--
+
+DROP TABLE IF EXISTS `field`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `field` (
+  `idField` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `min` int(11) DEFAULT NULL,
+  `max` int(11) DEFAULT NULL,
+  `unit_idUnit` int(11) NOT NULL,
+  `type_idtype` int(11) NOT NULL,
+  `section_idSection` int(11) NOT NULL,
+  `file_idFile` int(11) NOT NULL,
+  PRIMARY KEY (`idField`),
+  UNIQUE KEY `idField_UNIQUE` (`idField`),
+  KEY `fk_field_unit1_idx` (`unit_idUnit`),
+  KEY `fk_field_type1_idx` (`type_idtype`),
+  KEY `fk_field_section1_idx` (`section_idSection`),
+  KEY `fk_field_file1` (`file_idFile`),
+  CONSTRAINT `fk_field_section1` FOREIGN KEY (`section_idSection`) REFERENCES `section` (`idSection`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_field_type1` FOREIGN KEY (`type_idtype`) REFERENCES `type` (`idtype`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_field_unit1` FOREIGN KEY (`unit_idUnit`) REFERENCES `unit` (`idUnit`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_field_file1` FOREIGN KEY (`file_idFile`) REFERENCES `file` (`idFile`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `field`
+--
+
+LOCK TABLES `field` WRITE;
+/*!40000 ALTER TABLE `field` DISABLE KEYS */;
+INSERT INTO `field` VALUES (1,'hostname',NULL,NULL,1,1,1,86),(2,'hostPortId',NULL,NULL,1,1,1,86),(3,'neighborName',NULL,NULL,1,1,1,86),(4,'neighborPortId',NULL,NULL,1,1,1,86);
+/*!40000 ALTER TABLE `field` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `file`
+--
+
+DROP TABLE IF EXISTS `file`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `file` (
+  `idFile` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `CSCG_idCSCG` int(11) NOT NULL,
+  `fileFormat_idFileFormat` int(11) NOT NULL,
+  `dirname_idDirname` int(11) NOT NULL,
+  PRIMARY KEY (`idFile`),
+  UNIQUE KEY `idFile_UNIQUE` (`idFile`),
+  KEY `fk_file_CSCG1_idx` (`CSCG_idCSCG`),
+  KEY `fk_file_fileFormat1_idx` (`fileFormat_idFileFormat`),
+  KEY `fk_file_dirname1_idx` (`dirname_idDirname`),
+  CONSTRAINT `fk_file_CSCG1` FOREIGN KEY (`CSCG_idCSCG`) REFERENCES `CSCG` (`idCSCG`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_file_dirname1` FOREIGN KEY (`dirname_idDirname`) REFERENCES `dirname` (`idDirname`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_file_fileFormat1` FOREIGN KEY (`fileFormat_idFileFormat`) REFERENCES `fileFormat` (`idFileFormat`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `file`
+--
+
+LOCK TABLES `file` WRITE;
+/*!40000 ALTER TABLE `file` DISABLE KEYS */;
+INSERT INTO `file` VALUES (31,'airport_data.properties',1,1,1),(32,'CrewToPax.sqlite',1,1,1),(33,'timeserv_oag.sqlite',1,1,1),(34,'FSA_Config.sqlite',1,1,1),(35,'shoppingcart.properties',1,1,1),(36,'casProgramInfoList.json',1,1,1),(37,'pctrl.sqlite',1,1,1),(38,'FSA_Script-default.json',1,1,4),(39,'FSA_AutoFlightOpen_Script.json',1,1,4),(40,'pn0000000310.md5',1,1,1),(41,'usage.properties',1,1,1),(42,'CabinGuiConfig.dat',1,1,2),(43,'exchanges.properties',1,1,2),(44,'CabinGuiConfig.sqlite',1,1,2),(45,'pn0000000310.swp',1,1,1),(46,'flightconnect.properties',1,1,1),(47,'framework-res.apk',1,1,1),(48,'parentalcontrol.properties',1,1,1),(49,'3dmapsconfig.xml',1,1,1),(50,'cmlconfig.xml',1,1,6),(51,'xldtopology.dat',1,1,6),(52,'mysql_version',1,1,6),(53,'SIC_FWK_TEST-0.0.1-SNAPSHOT.apk',1,1,6),(54,'framework.dat',1,1,6),(55,'appservicetypeconfig.xml',1,1,6),(56,'config_fds.properties',1,1,6),(57,'enabled_plugins',1,1,6),(58,'rabbitmq.users',1,1,6),(59,'xldoptions.dat',1,1,6),(60,'rfs_apps.dat',1,1,6),(61,'rabbitmq.config',1,1,6),(62,'FWK_TEST.sh',1,1,6),(63,'appservicetypeconfig.xsd',1,1,6),(64,'usbPortMapping.txt',1,1,5),(65,'fta_service.xml',1,1,5),(66,'enhancedSeat.dat',1,1,5),(67,'01vod.tm',1,1,5),(68,'passenger.dat',1,1,5),(69,'lcs.dat',1,1,5),(70,'avchan.dat',1,1,5),(71,'audiovideo.dat',1,1,5),(72,'audiooutput.dat',1,1,5),(73,'pnCompatibility.ini',1,1,5),(74,'NCF_Switch_SDB.dat',1,1,5),(75,'sut.dat',1,1,5),(76,'cameradev.dat',1,1,5),(77,'resolv.conf',1,1,5),(78,'a429dev.dat',1,1,5),(79,'servicesRedundancy.conf',1,1,5),(80,'thirdPartyLru.dat',1,1,5),(81,'GAP_Config.dat',1,1,5),(82,'NCF_SysCtl_DSUD4.dat',1,1,5),(83,'smcroute.conf',1,1,5),(84,'arinc485.dat',1,1,5),(85,'dataRepositoryConf.dat',1,1,5),(86,'neighborlink.dat',1,1,5),(87,'stream.dat',1,1,5),(88,'lru_static_data.dat',1,1,5),(89,'NCF_Switch_DSUD4.dat',1,1,5),(90,'streamID.conf',1,1,5),(91,'areamap.dat',1,1,5),(92,'pcuKeyMapping.ini',1,1,5),(93,'discrete.dat',1,1,5),(94,'areatype.dat',1,1,5),(95,'NCF_Routes_SVDU4.dat',1,1,5),(96,'fta.xml',1,1,5),(97,'BIT_RedundancyConfig.dat',1,1,5),(98,'bit_airframer_code.dat',1,1,5),(99,'extdigital.dat',1,1,5),(100,'extdev.dat',1,1,5),(101,'bit_services.dat',1,1,5),(102,'bgmvol.dat',1,1,5),(103,'BIT_ThirdLruFaultCode.ini',1,1,5),(104,'hosts',1,1,5),(105,'NCF_Switch_SVDU4.dat',1,1,5),(106,'NCF_Switch_ICMT4.dat',1,1,5),(107,'BITE.dat',1,1,5),(108,'NCF_VLAN_Kernel_DSUD4.dat',1,1,5),(109,'pavadef.dat',1,1,5),(110,'sysdef.dat',1,1,5),(111,'pramvol.dat',1,1,5),(112,'NCF_IpAlias_DSUD4.dat',1,1,5),(113,'ncfPages.ini',1,1,5),(114,'NCF_Routes_DSUD4.dat',1,1,5),(115,'hbSender.conf',1,1,5),(116,'dhcpd.conf.DSUD4',1,1,5),(117,'rebootTime.dat',1,1,5),(118,'slp.conf.DSUD4',1,1,5),(119,'genericfunctions.ini',1,1,5),(120,'lrumap.dat',1,1,5);
+/*!40000 ALTER TABLE `file` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `fileFormat`
+--
+
+DROP TABLE IF EXISTS `fileFormat`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fileFormat` (
+  `idFileFormat` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `description` text,
+  PRIMARY KEY (`idFileFormat`),
+  UNIQUE KEY `idFileFormat_UNIQUE` (`idFileFormat`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fileFormat`
+--
+
+LOCK TABLES `fileFormat` WRITE;
+/*!40000 ALTER TABLE `fileFormat` DISABLE KEYS */;
+INSERT INTO `fileFormat` VALUES (1,'dat',NULL),(2,'xml',NULL),(3,'ini','\"windows.ini\" like syntax with sections title in [brackets]');
+/*!40000 ALTER TABLE `fileFormat` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `file_CSCG`
+--
+
+DROP TABLE IF EXISTS `file_CSCG`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `file_CSCG` (
+  `CSCG_idCSCG` int(11) NOT NULL,
+  `file_idFile` int(11) NOT NULL,
+  KEY `fk_file_CSCG_CSCG1_idx` (`CSCG_idCSCG`),
+  KEY `fk_file_CSCG_file1_idx` (`file_idFile`),
+  CONSTRAINT `fk_file_CSCG_CSCG1` FOREIGN KEY (`CSCG_idCSCG`) REFERENCES `CSCG` (`idCSCG`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_file_CSCG_file1` FOREIGN KEY (`file_idFile`) REFERENCES `file` (`idFile`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `file_CSCG`
+--
+
+LOCK TABLES `file_CSCG` WRITE;
+/*!40000 ALTER TABLE `file_CSCG` DISABLE KEYS */;
+/*!40000 ALTER TABLE `file_CSCG` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `file_documentation`
+--
+
+DROP TABLE IF EXISTS `file_documentation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `file_documentation` (
+  `documentation_idDocumentation` int(11) NOT NULL,
+  `file_idFile` int(11) NOT NULL,
+  KEY `fk_file_documentation_documentation1_idx` (`documentation_idDocumentation`),
+  KEY `fk_file_documentation_file1_idx` (`file_idFile`),
+  CONSTRAINT `fk_file_documentation_documentation1` FOREIGN KEY (`documentation_idDocumentation`) REFERENCES `documentation` (`idDocumentation`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_file_documentation_file1` FOREIGN KEY (`file_idFile`) REFERENCES `file` (`idFile`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `file_documentation`
+--
+
+LOCK TABLES `file_documentation` WRITE;
+/*!40000 ALTER TABLE `file_documentation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `file_documentation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `file_product`
+--
+
+DROP TABLE IF EXISTS `file_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `file_product` (
+  `file_idFile` int(11) NOT NULL,
+  `product_idProduct` int(11) NOT NULL,
+  KEY `fk_file_product_file1_idx` (`file_idFile`),
+  KEY `fk_file_product_product1_idx` (`product_idProduct`),
+  CONSTRAINT `fk_file_product_file1` FOREIGN KEY (`file_idFile`) REFERENCES `file` (`idFile`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_file_product_product1` FOREIGN KEY (`product_idProduct`) REFERENCES `product` (`idProduct`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `file_product`
+--
+
+LOCK TABLES `file_product` WRITE;
+/*!40000 ALTER TABLE `file_product` DISABLE KEYS */;
+/*!40000 ALTER TABLE `file_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product`
+--
+
+DROP TABLE IF EXISTS `product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product` (
+  `idProduct` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `version` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idProduct`),
+  UNIQUE KEY `idProduct_UNIQUE` (`idProduct`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product`
+--
+
+LOCK TABLES `product` WRITE;
+/*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` VALUES (1,'AVANT','v300');
+/*!40000 ALTER TABLE `product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `section`
+--
+
+DROP TABLE IF EXISTS `section`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `section` (
+  `idSection` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  PRIMARY KEY (`idSection`),
+  UNIQUE KEY `idSection_UNIQUE` (`idSection`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `section`
+--
+
+LOCK TABLES `section` WRITE;
+/*!40000 ALTER TABLE `section` DISABLE KEYS */;
+INSERT INTO `section` VALUES (1,'N/A');
+/*!40000 ALTER TABLE `section` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `type`
+--
+
+DROP TABLE IF EXISTS `type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `type` (
+  `idtype` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`idtype`),
+  UNIQUE KEY `idtype_UNIQUE` (`idtype`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `type`
+--
+
+LOCK TABLES `type` WRITE;
+/*!40000 ALTER TABLE `type` DISABLE KEYS */;
+INSERT INTO `type` VALUES (1,'text','ascii string'),(2,'integer','Integer value'),(3,'float','Decimal value');
+/*!40000 ALTER TABLE `type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `unit`
+--
+
+DROP TABLE IF EXISTS `unit`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `unit` (
+  `idUnit` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `description` text,
+  PRIMARY KEY (`idUnit`),
+  UNIQUE KEY `idUnit_UNIQUE` (`idUnit`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `unit`
+--
+
+LOCK TABLES `unit` WRITE;
+/*!40000 ALTER TABLE `unit` DISABLE KEYS */;
+INSERT INTO `unit` VALUES (1,'N/A','non applicable'),(2,'s','second'),(3,'ms','millisecond'),(4,'step',NULL);
+/*!40000 ALTER TABLE `unit` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2014-05-23 18:05:25

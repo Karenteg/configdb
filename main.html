@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="/configDB/" target="_blank">
+    <title>TopSeries Configuration Database</title>
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <script type="text/javascript" src="scripts/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="scripts/configDB.js"></script>
+</head>
+<body style="min-width:1000px" onload="javascript:load()" >
+<div id="container">
+    <div id="title">TopSeries Configuration Database Documentation<button disabled='disabled' 
+    class="logout" id="logoutButton" onclick="javascript:logoutDB()">Exit</button></div>
+    <div id="TOC">
+ <!--   	<span class="TOC_li">Table Of Content</span>
+         <hr>
+ -->
+        <ul id="TOC_ul">
+            <li class="TOC_li" onclick="javascript:displayFiles()">Files</li>
+            <li class="TOC_li" onclick="javascript:displayFields()">Fields</li>
+            <li class="TOC_li" onclick="javascript:displayCSCG()">CSCG</li>
+            <li class="TOC_li" onclick="javascript:displayUnits()">Field Units</li>
+            <li class="TOC_li" onclick="javascript:displayTypes()">Field Type</li>
+            <li class="TOC_li" onclick="javascript:displayDocumentations()">Documentations</li>
+            <li class="TOC_li" onclick="javascript:essaiJson()">Json</li>
+        </ul>
+    </div>
+    <div id="editor">
+	<button class="editor" id="AddButton" onclick="javascript:addPushed(this)" disabled='disabled' type="button">Add</button>
+	<button class="editor" id="EditButton" onclick="javascript:editPushed(this)" disabled='disabled' type="button">Edit</button>
+	<button class="editor" id="DeleteButton" onclick="javascript: deletePushed(this)" disabled='disabled' type="button">Delete</button>
+    </div>
+    <div id="content">
+    </div>
+</div>
+</body>
+</html>

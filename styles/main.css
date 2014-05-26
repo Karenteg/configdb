@@ -1,0 +1,186 @@
+html {
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
+
+#title {
+	text-align: center;
+	font-size: 40px;
+	height: 50px;
+	float: center;
+	width: 100%;
+	background-color: #808080;
+	color: #000000;
+	display: block;
+}
+
+#editor {
+	text-align: right;
+	height: 30px;
+	float: right;
+	background-color: #e0e0e0;
+	color: #000000;
+	width: 75%;
+}
+
+button.editor {
+	width: 100px;
+	height: 35px;
+	border-radius: 15px;
+	border: 1px solid #ffffff; //
+	padding: 10px 20px 11px;
+	cursor: pointer;
+	background-color: #a0a0a0;
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+button.logout {
+	width: 60px;
+	height: 44px;
+	border-radius: 15px;
+	border: 1px solid #ffffff;
+	cursor: pointer;
+	background-color: #a0a0a0;
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffffff;
+	float: left;
+	margin-left: 10px;
+	margin-top: 3px;
+}
+
+button:hover:enabled {
+	color: #000000;
+	border: 1px solid #000000;
+}
+
+button:disabled {
+	opacity: 0.25;
+	cursor: not-allowed;
+}
+
+#container {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-color: #f0ff00;
+}
+
+#login {
+	width: 100%;
+	height: 100%; 
+	overflow: hidden;
+	text-align: center;
+	background-color: #e0e0e0;
+}
+
+#box {
+	overflow: hidden;
+	text-align: center;
+	background-color: #707070;
+	display: block;
+	width: 300px;
+	height: 200px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -150px;
+}
+
+form.login {
+	display: block;
+	width: 300px;
+	height: 200px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -150px;
+}
+
+#TOC {
+	float: left;
+	width: 25%;
+	height: 100%;
+	background-color: #c0c0c0;
+}
+
+#TOC_ul {
+	font-size: 20px;
+	list-style-type: none;
+}
+
+.TOC_li {
+	font-size: 18px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#content {
+	background-color: #e0e0e0;
+	overflow: auto; //
+	float: left; //
+	width: 75%;
+	height: 100%;
+	padding: 20px 20px;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td {
+	font-family: "Courier";
+	font-size: 18px;
+}
+
+td.login {
+	border-style: none;
+	font-size: 18px;
+	font-family: "Serif";
+}
+
+.odd {
+	background-color: #d8d8d8;
+}
+
+.even {
+	background-color: #e8e8e8;
+}
+
+td.title {
+	font-weight: bold;
+	width: 100px;
+}
+
+#description {
+	font-weight: bold;
+	font-family: "Courier";
+	font-size: 18px;
+}
+
+.error {
+	text-align: center;
+	color: #DD2020;
+	font-family: "Courier";
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.descArea {
+	resize: none;
+	font-family: "Courier";
+	font-size: 14px;
+	width: 100%;
+}
